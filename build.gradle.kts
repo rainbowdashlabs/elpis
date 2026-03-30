@@ -3,7 +3,7 @@ plugins {
     id("com.gradleup.shadow") version "9.2.2"
 }
 
-application.mainClass = "dev.chojo.Main"
+application.mainClass = "dev.chojo.Bootstrapper"
 group = "dev.chojo"
 version = "1.0.0"
 
