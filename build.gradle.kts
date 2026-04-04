@@ -11,6 +11,7 @@ plugins {
 }
 
 application.mainClass = "dev.chojo.Bootstrapper"
+application.applicationDefaultJvmArgs = listOf("--add-reads", "dev.chojo.elpis=ALL-UNNAMED")
 group = "dev.chojo"
 version = "1.0.0"
 
@@ -29,6 +30,8 @@ dependencies {
     implementation(libs.postgres)
     implementation(libs.bundles.sadu)
 
+    annotationProcessor(libs.ocular)
+    implementation(libs.ocular)
     implementation(libs.bundles.config)
 
     annotationProcessor(libs.javalin.openapi.annotation)
@@ -48,7 +51,9 @@ dependencies {
 tasks{
     compileJava {
         options.isIncremental = true
+        options.compilerArgs.addAll(listOf("--add-reads", "dev.chojo.elpis=ALL-UNNAMED"))
     }
+
     processResources {
         val projectVersion = project.version.toString();
         inputs.property("projectVersion", projectVersion)
@@ -83,6 +88,7 @@ tasks{
             events("passed", "skipped", "failed")
         }
     }
+
     register<Test>("testDatabase") {
         group = "verification"
         description = "Runs database validation tests"
@@ -95,6 +101,7 @@ tasks{
             events("passed", "skipped", "failed")
         }
     }
+
     register("checkLicenseBackend") {
         group = "verification"
         description = "Checks license headers for backend Java files"
@@ -120,12 +127,13 @@ idea {
     project {
         settings {
             var shared = listOf("-Dbot.cleanup=false",
-                "-Dbot.config=config/config.testing.yaml",
+                "-Dbot.config=config.testing.yaml",
                 "-Dlog4j2.configurationFile=docker/config/log4j2.testing.xml",
                 "-Dbot.db.host=localhost,",
                 "-Dbot.api.url=http://localhost:5173",
                 "--sun-misc-unsafe-memory-access=allow",
-                "--enable-native-access=ALL-UNNAMED")
+                "--enable-native-access=ALL-UNNAMED",
+                "--add-reads", "dev.chojo.elpis=ALL-UNNAMED")
             runConfigurations {
                 register<org.jetbrains.gradle.ext.Application>("App-Testing") {
                     mainClass = "dev.chojo.Bootstrapper"

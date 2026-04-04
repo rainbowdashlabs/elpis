@@ -1,5 +1,9 @@
 package dev.chojo;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import dev.chojo.core.Bot;
+import dev.chojo.guice.ElpisModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,11 +13,9 @@ public class Bootstrapper {
 
     private static final Logger log = LoggerFactory.getLogger(Bootstrapper.class);
 
-    void main() {
-        try {
-            new Elpis(Objects.requireNonNull(System.getenv("BOT_TOKEN"), "Bot token not set!"));
-        } catch (InterruptedException e) {
-            log.error("Failed to start bot!");
-        }
+    void main() throws InterruptedException {
+        Injector injector = Guice.createInjector(new ElpisModule());
+        Bot instance = injector.getInstance(Bot.class);
+        instance.start();
     }
 }

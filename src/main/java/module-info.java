@@ -3,6 +3,7 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 module dev.chojo.elpis {
     requires net.dv8tion.jda;
+    requires okhttp3;
 
     requires io.github.kaktushose.jdac.core;
     requires io.github.kaktushose.jdac.guice;
@@ -22,7 +23,17 @@ module dev.chojo.elpis {
     requires de.chojo.sadu.updater;
 
     requires org.jspecify;
+    requires tools.jackson.databind;
 
     requires java.desktop;
     requires java.sql;
+    requires ocular;
+
+    exports dev.chojo.configuration;
+    exports dev.chojo.core;
+
+    opens dev.chojo.core;
+    opens dev.chojo.configuration;
+    opens dev.chojo.configuration.elements;
+    opens dev.chojo.configuration.elements.sub;
 }
