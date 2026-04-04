@@ -24,10 +24,11 @@ module dev.chojo.elpis {
 
     requires org.jspecify;
     requires tools.jackson.databind;
+    requires tools.jackson.dataformat.yaml;
 
     requires java.desktop;
     requires java.sql;
-    requires ocular;
+    requires dev.chojo.ocular;
 
     exports dev.chojo.configuration;
     exports dev.chojo.core;

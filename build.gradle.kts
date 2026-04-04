@@ -132,8 +132,7 @@ idea {
                 "-Dbot.db.host=localhost,",
                 "-Dbot.api.url=http://localhost:5173",
                 "--sun-misc-unsafe-memory-access=allow",
-                "--enable-native-access=ALL-UNNAMED",
-                "--add-reads", "dev.chojo.elpis=ALL-UNNAMED")
+                "--enable-native-access=ALL-UNNAMED")
             runConfigurations {
                 register<org.jetbrains.gradle.ext.Application>("App-Testing") {
                     mainClass = "dev.chojo.Bootstrapper"
