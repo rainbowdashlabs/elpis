@@ -60,7 +60,7 @@ testcontainers-junit = { group = "org.testcontainers", name = "testcontainers-ju
 
 
 # Annotations
-jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
+jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.1" }
 
 [bundles]
 logback = [
